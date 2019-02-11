@@ -46,7 +46,7 @@ const toUser = (entity: UserEntity): UserResponse => {
 }
 
 const userOne: UserEntity = {
-    id: 1, 
+    id: 1,
     firstName: 'User',
     lastName: 'One',
     birthDate: new Date('01-01-2000')
@@ -55,3 +55,52 @@ const userOne: UserEntity = {
 
 
 console.log(toUser(userOne))
+
+
+interface YourInterface {
+    nickname: string
+    color: "blue" | "white"
+    age: number
+    websites: string[]
+    job:
+    {
+        description: string
+        salary: number
+        info?: string
+    } 
+    // |
+    // {
+    //     description: string
+    //     salary: number
+    // }
+}
+
+const cheshireCat: YourInterface = {
+    nickname: 'cat',
+    color: 'blue',
+    age: 15,
+    websites: [
+        'http://www.catsareawesome.com',
+        'http://www.dogsarelame.biz'
+    ],
+    job: {
+        description: 'Scare people',
+        salary: 500,
+        info: 'only works on sundays'
+    }
+}
+
+const whiteRabbit: YourInterface = {
+    nickname: 'rabbie',
+    color: 'white',
+    age: 7,
+    websites: [
+        'http://www.rabbitsrule.com',
+        'http://www.carrots.net',
+        'http://www.rabbitnews.ru'
+    ],
+    job: {
+        description: 'Being fluffy',
+        salary: 1500
+    }
+}
