@@ -22,15 +22,15 @@ const alice: UserEntity = {
     firstName: 'Alice',
     lastName: 'Pleasance Liddell',
     birthDate: new Date(1865, 5, 4)
-  }
-  
-  const getUser = (id: number) => new Promise<UserEntity | null>((resolve, reject) => {
+}
+
+const getUser = (id: number) => new Promise<UserEntity | null>((resolve, reject) => {
     setTimeout(() => {
-      if (id === 123) resolve(alice)
-      else if (id > 1000) reject(new Error('getUser error!'))
-      else resolve(null)
+        if (id === 123) resolve(alice)
+        else if (id > 1000) reject(new Error('getUser error!'))
+        else resolve(null)
     }, 500)
-  })
+})
 
 
 app
@@ -47,16 +47,13 @@ app
     //     }
     // })
     .get('/users/:id([0-9]+)', async (req, res) => {
-        const response = undefined
-
-        
-      
+        const response = await getUser(parseInt(req.params.id))
         if (response) res.send(toUser(response))
         else res.status(404).send(`User not found!`)
-      })
+    })
     .listen(12345, () => console.log('Listening on port 12345'))
 
-  const toUser = (entity: UserEntity): UserResponse => {
+const toUser = (entity: UserEntity): UserResponse => {
     const currentDate = moment()
     const ageYears = moment.duration(currentDate.diff(entity.birthDate));
     const userAge = Math.floor(ageYears.asYears());
