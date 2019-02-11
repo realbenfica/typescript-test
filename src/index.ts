@@ -46,10 +46,18 @@ app
     //         res.status(404).send(`User ${userId} not found!`)
     //     }
     // })
+
     .get('/users/:id([0-9]+)', async (req, res) => {
-        const response = await getUser(parseInt(req.params.id))
-        if (response) res.send(toUser(response))
-        else res.status(404).send(`User not found!`)
+        try {
+            const response = await getUser(parseInt(req.params.id))
+            if (response) res.send(toUser(response))
+            else {
+                res.status(404).send("NUUULL")
+            }
+        }
+        catch (error) {
+            res.status(404).send(`User not found!`)
+        }
     })
     .listen(12345, () => console.log('Listening on port 12345'))
 
